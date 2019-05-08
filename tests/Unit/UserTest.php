@@ -14,6 +14,11 @@ class UserTest extends TestCase
     public function testExample()
     {
         $user = User::inRandomOrder()->first();
+        $this->assertIsString('int',$user->id);
+        $this->assertIsString('string' ,$user->email);
+        $this->assertInstanceOf('App\User' ,$user);
+        $this->assertIsString('string' ,$user->name);
+        $this->assertnotNull('string' ,$user->name);
 
     }
 
