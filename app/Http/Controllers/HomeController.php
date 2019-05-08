@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
+use App\User;
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     /**
@@ -15,7 +14,6 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Show the application dashboard.
      *
@@ -25,6 +23,13 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-
+    public function profile()
+    {
+        # $user = User::find(2);
+        # $user->delete();
+        // $users = User::all();
+        $user = Auth::user();
+        $posts = $user->posts;
+        return view('profile', ['posts' => $posts]);
+    }
 }
